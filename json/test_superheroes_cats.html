@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Our Cats</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+    <style>
+        /* || general styles */
+        html {
+            font-family: 'helvetica neue', helvetica, arial, sans-serif;
+            font-size: 16px;
+        }
+
+        body {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            font-family: 'Faster One', cursive;
+            font-weight: normal;
+        }
+
+        /* header styles */
+        h1 {
+            font-size: 4em;
+            text-align: center;
+        }
+
+        header p {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* section styles */
+        section article {
+            width: 33%;
+            float: left;
+        }
+
+        section p {
+            margin: 5px 0;
+        }
+
+        section ul {
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+    </section>
+
+    <script>
+        var section = document.querySelector('section');
+
+        
+        var requestURL = 'sample_cats.json';
+        var request = new XMLHttpRequest();     //  인스턴스 생성
+
+        request.open('GET', requestURL);
+
+        // 텍스트로 응답
+        request.responseType = 'text';          //  string
+        request.send();
+
+        request.onload = function () {
+            var catText = request.response;
+            var catString = JSON.parse(catString);
+            displayCatInfo(catString);
+        }
+
+        function populateHeader(jsonObj) {
+            var myH1 = document.createElement('h1');
+            myH1.textContent = jsonObj['squadName'];
+            header.appendChild(myH1);
+
+            var myPara = document.createElement('p');
+            myPara.textContent = 'HomeTown : ' + jsonObj['homeTown'] + ' // Formed : ' + jsonObj['formed'];
+            header.appendChild(myPara);
+        }
+
+        function displayCatInfo(jsonObj) {
+            //var heroes = jsonObj['members'];
+
+            for (var i = 0; i < jsonObj.length; i++) {
+                var myArticle = document.createElement('article');
+                var myH2 = document.createElement('h2');
+                var my2Para1 = document.createElement('p');
+                var my2Para2 = document.createElement('p');
+                var my2Para3 = document.createElement('p');
+                var myList = document.createElement('ul');
+
+                myH2.textContent = jsonObj[i].name;
+                my2Para1.textContent = 'Breed : ' + heroes[i].breed;
+                my2Para2.textContent = 'Color : ' + heroes[i].color;
+                my2Para3.textContent = 'Kittens';
+
+                var babys = jsonObj[i].kittens;
+                for (var j = 0; j < babys.length; j++) {
+                    var listItemName = document.createElement('li');
+                    var listItemGender = document.createElement('li');
+
+                    listItemName.textContent = 'Name : ' + babys[j].name;
+                    listItemGender.textContent = 'Gender : ' + babys[j].gender;
+                    myList.appendChild(listItemName);
+                    myList.appendChild(listItemGender);
+                }
+
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(my2Para1);
+                myArticle.appendChild(my2Para2);
+                myArticle.appendChild(my2Para3);
+                myArticle.appendChild(myList);
+
+                section.appendChild(myArticle);
+            }
+        }
+    </script>
+</body>
+</html>
