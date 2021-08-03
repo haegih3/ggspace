@@ -97,6 +97,11 @@
                 my2Para2.textContent = 'Color : ' + jsonObj[i].color;
                 my2Para3.textContent = 'Kittens';
 
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(my2Para1);
+                myArticle.appendChild(my2Para2);
+                myArticle.appendChild(my2Para3);
+
                 var babys = jsonObj[i].kittens;
                 for (var j = 0; j < babys.length; j++) {
                     var myList = document.createElement('ul');
@@ -110,11 +115,6 @@
 
                     myArticle.appendChild(myList);
                 }
-
-                myArticle.appendChild(myH2);
-                myArticle.appendChild(my2Para1);
-                myArticle.appendChild(my2Para2);
-                myArticle.appendChild(my2Para3);
 
                 section.appendChild(myArticle);
             }
