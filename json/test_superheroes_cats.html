@@ -91,7 +91,6 @@
                 var my2Para1 = document.createElement('p');
                 var my2Para2 = document.createElement('p');
                 var my2Para3 = document.createElement('p');
-                var myList = document.createElement('ul');
 
                 myH2.textContent = jsonObj[i].name;
                 my2Para1.textContent = 'Breed : ' + jsonObj[i].breed;
@@ -100,6 +99,7 @@
 
                 var babys = jsonObj[i].kittens;
                 for (var j = 0; j < babys.length; j++) {
+                    var myList = document.createElement('ul');
                     var listItemName = document.createElement('li');
                     var listItemGender = document.createElement('li');
 
@@ -107,13 +107,14 @@
                     listItemGender.textContent = 'Gender : ' + babys[j].gender;
                     myList.appendChild(listItemName);
                     myList.appendChild(listItemGender);
+
+                    myArticle.appendChild(myList);
                 }
 
                 myArticle.appendChild(myH2);
                 myArticle.appendChild(my2Para1);
                 myArticle.appendChild(my2Para2);
                 myArticle.appendChild(my2Para3);
-                myArticle.appendChild(myList);
 
                 section.appendChild(myArticle);
             }
