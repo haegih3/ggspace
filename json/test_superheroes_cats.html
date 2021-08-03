@@ -126,6 +126,7 @@
         }
 
         function displayCatInfo(jsonObj) {
+            var cats = jsonObj;
 
             var para1 = document.createElement('p');
             var para2 = document.createElement('p');
@@ -133,8 +134,8 @@
             var motherInfo = "The mother cats are called ";
             var kittenInfo = "The Kittens are ";
 
-            for (var i = 0; i < jsonObj.length; i++) {
-                var cats = jsonObj[i];
+
+            for (var i = 0; i < cats.length; i++) {
                 motherInfo = motherInfo + cats[i].name + ",";
 
                 var kittens = cats[i].kittens;
