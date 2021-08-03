@@ -79,22 +79,25 @@
         request.onload = function () {
             var catString = request.response;
             var cats = JSON.parse(catString);
-            displayCatInfo(cats);
+            displayallCats(cats);
+            displayCatInfo(cats)
         }
 
-        function displayCatInfo(jsonObj) {
+        function displayallCats(jsonObj) {
             //var heroes = jsonObj['members'];
 
             for (var i = 0; i < jsonObj.length; i++) {
+                var motherInfo = jsonObj[i];
+
                 var myArticle = document.createElement('article');
                 var myH1 = document.createElement('h1');
                 var my1Para1 = document.createElement('p');
                 var my1Para2 = document.createElement('p');
                 var my1Para3 = document.createElement('p');
 
-                myH1.textContent = jsonObj[i].name;
-                my1Para1.textContent = 'Breed : ' + jsonObj[i].breed;
-                my1Para2.textContent = 'Color : ' + jsonObj[i].color;
+                myH1.textContent = motherInfo.name;
+                my1Para1.textContent = 'Breed : ' + motherInfo[i].breed;
+                my1Para2.textContent = 'Color : ' + motherInfo[i].color;
                 my1Para3.textContent = 'Kittens';
 
                 myArticle.appendChild(myH1);
@@ -102,15 +105,15 @@
                 myArticle.appendChild(my1Para2);
                 myArticle.appendChild(my1Para3);
 
-                var babys = jsonObj[i].kittens;
-                for (var j = 0; j < babys.length; j++) {
+                var kittenInfo = jsonObj[i].kittens;
+                for (var j = 0; j < kittenInfo.length; j++) {
                     var myList = document.createElement('ul');
                     var listItemName = document.createElement('li');
                     var myH2 = document.createElement('h2');
                     var my2Para1 = document.createElement('p');
 
-                    myH2.textContent = babys[j].name;
-                    my2Para1.textContent = 'Gender : ' + babys[j].gender;
+                    myH2.textContent = kittenInfo[j].name;
+                    my2Para1.textContent = 'Gender : ' + kittenInfo[j].gender;
                     listItemName.appendChild(myH2);
                     listItemName.appendChild(my2Para1);
 
@@ -120,6 +123,42 @@
 
                 section.appendChild(myArticle);
             }
+        }
+
+        function displayCatInfo(jsonObj) {
+
+            var para1 = document.createElement('p');
+            var para2 = document.createElement('p');
+
+            var motherInfo = "The mother cats are called ";
+            var kittenInfo = "The Kittens are " + ;
+
+            for (var i = 0; i < jsonObj.length; i++) {
+                var cats = jsonObj[i];
+                motherInfo = motherInfo + cats[i].name + ",";
+
+                var kittens = cats[i].kittens;
+                var cntAll = kittens.length;
+                for (var j = 0; j < kittens.length; j++) {
+                    var infoGender = kittens[j].gender;
+                    var cntF = 0,
+                        cntM = 0;
+
+                    if (infoGender == "m") {
+                        cntM = cntM + 1;
+                    } else if (infoGender == "f") {
+                        cntF = cntF + 1;
+                    }
+                }
+                kittenInfo = kittenInfo + cntAll + " / " + cntM + " / " + cntF;
+            }
+            motherInfo = para1Text.substr(0, motherInfo.length - 1);
+            motherInfo = para1Text.replace(",", " and ");
+
+            para1.textContent = motherInfo;
+            para2.textContent = kittenInfo;
+            section.appendChild(para1);
+            section.appendChild(para2);
         }
     </script>
 </body>
