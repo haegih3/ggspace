@@ -152,8 +152,8 @@
                 }
                 kittenInfo = kittenInfo + cntAll + " / " + cntM + " / " + cntF;
             }
-            motherInfo = para1Text.substr(0, motherInfo.length - 1);
-            motherInfo = para1Text.replace(",", " and ");
+            motherInfo = motherInfo.substr(0, motherInfo.length - 1);
+            motherInfo = motherInfo.replace(",", " and ");
 
             para1.textContent = motherInfo;
             para2.textContent = kittenInfo;
