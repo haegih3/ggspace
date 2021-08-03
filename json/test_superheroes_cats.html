@@ -78,7 +78,7 @@
 
         request.onload = function () {
             var catText = request.response;
-            var catString = JSON.parse(catString);
+            var catString = JSON.parse(catText);
             displayCatInfo(catString);
         }
 
