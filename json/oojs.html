@@ -43,52 +43,19 @@
         }
 
         let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
-        /*
+
         function Shape(name, sides, sideLength) {
             this.name = name;
             this.sides = sides;
             this.sideLength = sideLength;
             this.calcPerimeter = function () {
-                alert(this.sides * this.sideLength);
+                return this.sides * this.sideLength;
             };
         }
 
         // Write your code below here
         let square = new Shape("square", 4, 5);
         let triangle = new Shape("triangle", 3, 3);
-        */
-
-        //예제시작
-        //let button = document.querySelector('button');
-        //let finish = document.querySelector('.finish');
-        // name = document.querySelector('.name');
-        // sides = document.querySelector('.sides');
-        // sideLenght = document.querySelector('.sideLenght');
-
-        function Shape(name, sides, sideLength) {
-            this.name = name;
-            //console.log(name);
-            this.sides = sides;
-            this.sideLength = sideLength;
-
-            function calcPerimeter() {
-                if (this.name === 'round' && this.sides === '') {
-                    return Math.PI * Math.pow(0.5 * this.sideLength, 2);
-                } else {
-                    return this.sides * this.sideLength;
-                }
-            };
-        };
-
-        // finish.value = name.calcPerimeter();
-        // button.onclick = finish.value;
-
-        let square = new Shape('square', 4, 5);
-        square.calcPerimeter();
-        let triangel = new Shape('triangel', 3, 3);
-        console.log(triangel.calcPerimeter());
-        let round = new Shape('round', '', 4);
-        round.calcPerimeter();
 
     </script>
 </head>
