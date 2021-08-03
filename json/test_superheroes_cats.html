@@ -77,19 +77,9 @@
         request.send();
 
         request.onload = function () {
-            var catText = request.response;
-            var catString = JSON.parse(catText);
-            displayCatInfo(catString);
-        }
-
-        function populateHeader(jsonObj) {
-            var myH1 = document.createElement('h1');
-            myH1.textContent = jsonObj['squadName'];
-            header.appendChild(myH1);
-
-            var myPara = document.createElement('p');
-            myPara.textContent = 'HomeTown : ' + jsonObj['homeTown'] + ' // Formed : ' + jsonObj['formed'];
-            header.appendChild(myPara);
+            var catString = request.response;
+            var cats = JSON.parse(catString);
+            displayCatInfo(cats);
         }
 
         function displayCatInfo(jsonObj) {
