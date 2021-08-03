@@ -72,7 +72,7 @@
             this.sides = sides;
             this.sideLength = sideLength;
 
-            function calcPerimeter() {
+            this.calcPerimeter = function () {
                 if (this.name === 'round' && this.sides === '') {
                     return Math.PI * Math.pow(0.5 * this.sideLength, 2);
                 } else {
@@ -89,7 +89,7 @@
         let triangel = new Shape('triangel', 3, 3);
         console.log(triangel.calcPerimeter());
         let round = new Shape('round', '', 4);
-        round.calcPerimeter();
+        console.log(round.calcPerimeter());
     </script>
 </head>
 
