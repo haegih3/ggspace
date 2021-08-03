@@ -79,15 +79,14 @@
         request.onload = function () {
             var catString = request.response;
             var cats = JSON.parse(catString);
-            //displayallCats(cats);
+            displayallCats(cats);
             displayCatInfo(cats)
         }
 
         function displayallCats(jsonObj) {
-            //var heroes = jsonObj['members'];
+            var motherInfo = jsonObj;
 
-            for (var i = 0; i < jsonObj.length; i++) {
-                var motherInfo = jsonObj[i];
+            for (var i = 0; i < motherInfo.length; i++) {
 
                 var myArticle = document.createElement('article');
                 var myH1 = document.createElement('h1');
@@ -95,7 +94,7 @@
                 var my1Para2 = document.createElement('p');
                 var my1Para3 = document.createElement('p');
 
-                myH1.textContent = motherInfo.name;
+                myH1.textContent = motherInfo[i].name;
                 my1Para1.textContent = 'Breed : ' + motherInfo[i].breed;
                 my1Para2.textContent = 'Color : ' + motherInfo[i].color;
                 my1Para3.textContent = 'Kittens';
