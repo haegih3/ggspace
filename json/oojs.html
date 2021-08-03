@@ -72,13 +72,13 @@
             this.sides = sides;
             this.sideLength = sideLength;
 
-            function calcPerimeter() {
-                if (this.name === 'round' && this.sides === '') {
-                    return Math.PI * Math.pow(0.5 * this.sideLength, 2);
-                } else {
-                    return this.sides * this.sideLength;
-                }
-            };
+        };
+        function calcPerimeter() {
+            if (this.name === 'round' && this.sides === '') {
+                return Math.PI * Math.pow(0.5 * this.sideLength, 2);
+            } else {
+                return this.sides * this.sideLength;
+            }
         };
 
          finish.value = name.calcPerimeter();
