@@ -91,8 +91,8 @@
 
             var motherInfo = "The mother cats are called ";
             var kittenInfo = "The Kittens are ";
-            var cntAll = 0, cntkittens = 0,
-                cntAllM = 0, cntM = 0;
+            var cntAll = 0,
+                cntAllM = 0;
 
             for (var i = 0; i < cats.length; i++) {
                 motherInfo = motherInfo + cats[i].name + ",";
@@ -103,11 +103,8 @@
                     var infoGender = kittens[j].gender;
 
                     if (infoGender == "m") {
-                        cntM = cntM + 1;
+                        cntAllM = cntAllM + 1;
                     }
-
-                    cntAllM = cntAllM + cntM;
-                    cntAllF = cntAllF + cntF;
                 }
 
                 cntAll = cntAll + cntkittens;
@@ -115,7 +112,7 @@
             motherInfo = motherInfo.substr(0, motherInfo.length - 1);
             motherInfo = motherInfo.replace(/,/g, " and ");
 
-            kittenInfo = kittenInfo + "all " + cntAll + " / Male " + cntM + " / Female " + cntAll - cntM;
+            kittenInfo = kittenInfo + "all " + cntAll + " / Male " + cntAllM + " / Female " + cntAll - cntAllM;
 
             para1.textContent = motherInfo;
             para2.textContent = kittenInfo;
