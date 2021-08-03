@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Our superheroes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+    <style>
+        /* || general styles */
+        html {
+            font-family: 'helvetica neue', helvetica, arial, sans-serif;
+            font-size: 16px;
+        }
+
+        body {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            font-family: 'Faster One', cursive;
+            font-weight: normal;
+        }
+
+        /* header styles */
+        h1 {
+            font-size: 4em;
+            text-align: center;
+        }
+
+        header p {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* section styles */
+        section article {
+            width: 33%;
+            float: left;
+        }
+
+        section p {
+            margin: 5px 0;
+        }
+
+        section ul {
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+    </header>
+
+    <section>
+    </section>
+
+    <script>
+        var header = document.querySelector('header');
+        var section = document.querySelector('section');
+
+        var requestURL = 'superheroes.json';
+        var request = new XMLHttpRequest();     //  인스턴스 생성
+
+        request.open('GET', requestURL);
+
+        request.responseType = 'json';
+        request.send();
+
+        request.onload = function () {
+            var superHeroes = request.response;
+            populateHeader(superHeroes);
+            showHeroes(superHeroes);
+        }
+
+        function populateHeader(jsonObj) {      //  매개변수로 jsonObj 이름붙임
+            var myH1 = document.createElement('h1');
+            myH1.textContent = jsonObj['squadName'];
+            header.appendChild(myH1);
+
+            var myPara = document.createElement('p');
+            myPara.textContent = 'HomeTown : ' + jsonObj['homeTown'] + ' // Formed : ' + jsonObj['formed'];
+            header.appendChild(myPara);
+        }
+
+        function showHeroes(jsonObj) {
+            var heroes = jsonObj['members'];
+
+            for (var i = 0; i < heroes.length; i++) {
+                var myArticle = document.createElement('article');
+                var myH2 = document.createElement('h2');
+                var my2Para1 = document.createElement('p');
+                var my2Para2 = document.createElement('p');
+                var my2Para3 = document.createElement('p');
+                var myList = document.createElement('ul');
+
+                myH2.textContent = heroes[i].name;
+                my2Para1.textContent = 'SecretIdentity : ' + heroes[i].secretIdentity;
+                my2Para2.textContent = 'Age : ' + heroes[i].age;
+                my2Para3.textContent = 'Superpowers';
+
+                var superpower = heroes[i].powers;
+                for (var j = 0; j < superpower.length; j++) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = superpower[j];
+                    myList.appendChild(listItem);
+                }
+
+                myArticle.appendChild(myH2);
+                myArticle.appendChild(my2Para1);
+                myArticle.appendChild(my2Para2);
+                myArticle.appendChild(my2Para3);
+                myArticle.appendChild(myList);
+
+                section.appendChild(myArticle);
+            }
+        }
+    </script>
+</body>
+</html>
