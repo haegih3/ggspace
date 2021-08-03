@@ -112,7 +112,7 @@
             motherInfo = motherInfo.substr(0, motherInfo.length - 1);
             motherInfo = motherInfo.replace(/,/g, " and ");
 
-            kittenInfo = kittenInfo + "all " + cntAll + " / Male " + cntAllM + " / Female " + cntAll - cntAllM;
+            kittenInfo = kittenInfo + "all " + cntAll + " / Male " + cntAllM + " / Female " + (cntAll - cntAllM);
 
             para1.textContent = motherInfo;
             para2.textContent = kittenInfo;
