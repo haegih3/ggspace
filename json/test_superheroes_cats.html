@@ -87,32 +87,34 @@
 
             for (var i = 0; i < jsonObj.length; i++) {
                 var myArticle = document.createElement('article');
-                var myH2 = document.createElement('h2');
-                var my2Para1 = document.createElement('p');
-                var my2Para2 = document.createElement('p');
-                var my2Para3 = document.createElement('p');
+                var myH1 = document.createElement('h1');
+                var my1Para1 = document.createElement('p');
+                var my1Para2 = document.createElement('p');
+                var my1Para3 = document.createElement('p');
 
-                myH2.textContent = jsonObj[i].name;
-                my2Para1.textContent = 'Breed : ' + jsonObj[i].breed;
-                my2Para2.textContent = 'Color : ' + jsonObj[i].color;
-                my2Para3.textContent = 'Kittens';
+                myH1.textContent = jsonObj[i].name;
+                my1Para1.textContent = 'Breed : ' + jsonObj[i].breed;
+                my1Para2.textContent = 'Color : ' + jsonObj[i].color;
+                my1Para3.textContent = 'Kittens';
 
                 myArticle.appendChild(myH2);
-                myArticle.appendChild(my2Para1);
-                myArticle.appendChild(my2Para2);
-                myArticle.appendChild(my2Para3);
+                myArticle.appendChild(my1Para1);
+                myArticle.appendChild(my1Para2);
+                myArticle.appendChild(my1Para3);
 
                 var babys = jsonObj[i].kittens;
                 for (var j = 0; j < babys.length; j++) {
                     var myList = document.createElement('ul');
                     var listItemName = document.createElement('li');
-                    var listItemGender = document.createElement('li');
+                    var myH2 = document.createElement('h2');
+                    var my2Para1 = document.createElement('p');
 
-                    listItemName.textContent = 'Name : ' + babys[j].name;
-                    listItemGender.textContent = 'Gender : ' + babys[j].gender;
+                    myH2.textContent = babys[j].name;
+                    my2Para1.textContent = 'Gender : ' + babys[j].gender;
+                    listItemName.appendChild(myH2);
+                    listItemName.appendChild(my2Para1);
+
                     myList.appendChild(listItemName);
-                    myList.appendChild(listItemGender);
-
                     myArticle.appendChild(myList);
                 }
 
