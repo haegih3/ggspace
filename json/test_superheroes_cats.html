@@ -79,8 +79,51 @@
         request.onload = function () {
             var catString = request.response;
             var cats = JSON.parse(catString);
+            displayCatInfo(cats);
             displayallCats(cats);
-            displayCatInfo(cats)
+        }
+
+        function displayCatInfo(jsonObj) {
+            var cats = jsonObj;
+
+            var para1 = document.createElement('p');
+            var para2 = document.createElement('p');
+
+            var motherInfo = "The mother cats are called ";
+            var kittenInfo = "The Kittens are ";
+            var cntAll = 0, cntkittens = 0,
+                cntAllM = 0, cntM = 0,
+                cntAllF = 0, cntF = 0;
+
+            for (var i = 0; i < cats.length; i++) {
+                motherInfo = motherInfo + cats[i].name + ",";
+
+                var kittens = cats[i].kittens;
+                var cntkittens = kittens.length;
+                for (var j = 0; j < kittens.length; j++) {
+                    var infoGender = kittens[j].gender;
+
+                    if (infoGender == "m") {
+                        cntM = cntM + 1;
+                    } else if (infoGender == "f") {
+                        cntF = cntF + 1;
+                    }
+
+                    cntAllM = cntAllM + cntM;
+                    cntAllF = cntAllF + cntF;
+                }
+
+                cntAll = cntAll + cntkittens;
+            }
+            motherInfo = motherInfo.substr(0, motherInfo.length - 1);
+            motherInfo = motherInfo.replace(/,/g, " and ");
+
+            kittenInfo = kittenInfo + cntAll + " / " + cntM + " / " + cntF;
+
+            para1.textContent = motherInfo;
+            para2.textContent = kittenInfo;
+            section.appendChild(para1);
+            section.appendChild(para2);
         }
 
         function displayallCats(jsonObj) {
@@ -124,42 +167,6 @@
             }
         }
 
-        function displayCatInfo(jsonObj) {
-            var cats = jsonObj;
-
-            var para1 = document.createElement('p');
-            var para2 = document.createElement('p');
-
-            var motherInfo = "The mother cats are called ";
-            var kittenInfo = "The Kittens are ";
-
-
-            for (var i = 0; i < cats.length; i++) {
-                motherInfo = motherInfo + cats[i].name + ",";
-
-                var kittens = cats[i].kittens;
-                var cntAll = kittens.length;
-                for (var j = 0; j < kittens.length; j++) {
-                    var infoGender = kittens[j].gender;
-                    var cntF = 0,
-                        cntM = 0;
-
-                    if (infoGender == "m") {
-                        cntM = cntM + 1;
-                    } else if (infoGender == "f") {
-                        cntF = cntF + 1;
-                    }
-                }
-                kittenInfo = kittenInfo + cntAll + " / " + cntM + " / " + cntF;
-            }
-            motherInfo = motherInfo.substr(0, motherInfo.length - 1);
-            motherInfo = motherInfo.replace(",", " and ");
-
-            para1.textContent = motherInfo;
-            para2.textContent = kittenInfo;
-            section.appendChild(para1);
-            section.appendChild(para2);
-        }
     </script>
 </body>
 </html>
