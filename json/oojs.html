@@ -47,6 +47,20 @@
         }
 
         let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+
+        function Shape(name, sides, sideLength) {
+            this.name = name;
+            this.sides = sides;
+            this.sideLength = sideLength;
+            this.calcPerimeter = function () {
+                sides * sideLength;
+            };
+        }
+
+        // Write your code below here
+        let square = Shape("square", 4, 5);
+        let triangle = Shape("triangle", 3, 3);
+
     </script>
 </body>
 
